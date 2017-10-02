@@ -32,7 +32,8 @@ class UserTest < ActiveSupport::TestCase
     @user.email = "a" * 244 + "@example.com" # @user.emailが256文字以上
     assert_not @user.valid?
   end
-
+  
+  # メールアドレスが正しいか
   test "email validation should accept valid addresses" do
     valid_addresses = %w[user@example.com USER@foo.COM A_US-ER@foo.bar.org
                          first.last@foo.jp alice+bob@baz.cn]
@@ -60,11 +61,13 @@ class UserTest < ActiveSupport::TestCase
     assert_not duplicate_user.valid?
   end
 
+　# パスワードが空か
   test "password should be present (nonblank)" do
     @user.password = @user.password_confirmation = "" * 6
     assert_not @user.valid?
   end
-
+  
+  # パスワードが短すぎないか
   test "password should have a minimum length" do
     @user.password = @user.password_confirmation = "a" * 5
     assert_not @user.valid?
