@@ -61,7 +61,6 @@ class UserTest < ActiveSupport::TestCase
     assert_not duplicate_user.valid?
   end
 
-　# パスワードが空か
   test "password should be present (nonblank)" do
     @user.password = @user.password_confirmation = "" * 6
     assert_not @user.valid?
