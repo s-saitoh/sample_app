@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
             format: { with: VALID_EMAIL_REGEX } , # メールアドレスのフォーマット検証
             uniqueness: { case_sensitive: false }
   has_secure_password
-  validates :password, presence: true, length: { minimum: 6 }
+  validates :password, presence: true, length: { minimum: 6 }, allow_nil:true
 
   # 与えられた文字列のハッシュ値を返す
   def User.digest(string)
